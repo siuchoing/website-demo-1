@@ -1,0 +1,82 @@
+/* selector {
+    property: value;
+} */
+/* 
+#id_name { property: value; }
+.class_name { property: value; }
+tag_name { property: value; }
+
+*/
+
+/* find and style element by id */
+#products { 
+    display: flex;
+}
+
+.item {
+    width: 25%!important;
+}
+
+/* Find and style: element with id="products", 
+   and inside elements has item class */
+#products .item { ... }
+div#products 
+    div.item <- style elements
+        div.item <- style elements
+            p.item <- style elements
+                .item <- style elements
+<div id="products"> 
+    <div class="item"> <!-- style elements -->
+        <div class="item"> <!-- style elements -->
+            <p class="item"> <!-- style elements -->
+                <div class="item"></div> <!-- style elements -->
+            </p>
+        </div>
+    </div>
+</div>
+
+
+/* Find and style: element with id="products" and class="item" */
+ #products.item { ... }
+#products.item <- style elements
+    .item <- no style elements
+<div id="products" class="item"> <!-- style elements -->
+    <div class="item"></div> 
+</div>
+
+#products > div.item { ... }
+div#products 
+    div 
+        .item <- no style elements!!!
+    p.item
+    div.item <- style elements!!! (level 1 only)
+
+<div id="products"> 
+    <!-- level 1 -->
+    <div>
+        <!-- level 2 -->
+        <div class="item"></div> <!-- no style elements -->
+    </div> 
+    <p class="item"></p> <!-- style elements (level 1 only)
+ -->
+    <div class="item"></div> <!-- style elements (level 1 only)
+ -->
+</div>
+
+
+#products.item -> an element with id (products) and class (item)
+#products .item -> elements with class (item) in any level,
+                  inside element with id (products)
+.item -> elements with class (item)
+
+#products.item 
+    -> 元素如果id叫products, 且class叫item, 就給風格
+#products .item 
+    -> 元素如果id叫products, 其子元素只要class叫item, 就給其子元素風格。
+.item 
+    -> 元素如果class叫item, 就給風格。
+#products > .item 
+    -> 元素如果id叫products, 其下一層的子元素只要class叫item, 
+       就給其子元素風格。
+
+       !important > id > class > tag > other
